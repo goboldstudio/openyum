@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Routes, Route, NavLink } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Browse from './pages/Browse.jsx'
@@ -10,16 +10,24 @@ import Privacy from './pages/Privacy.jsx'
 import Support from './pages/Support.jsx'
 import Recipe from './pages/Recipe.jsx'
 
-function NavItem({ to, children }){
+function NavItem({ to, children, onClick }){
   return (
-    <NavLink to={to} className={({isActive}) =>
-      'px-3 py-2 rounded-lg text-sm ' +
-      (isActive ? 'bg-neutral-200' : 'hover:bg-neutral-100')
-    }>{children}</NavLink>
+    <NavLink
+      to={to}
+      onClick={onClick}
+      className={({ isActive }) =>
+        'px-3 py-2 rounded-lg text-sm ' +
+        (isActive ? 'bg-neutral-200' : 'hover:bg-neutral-100')
+      }
+    >
+      {children}
+    </NavLink>
   )
 }
 
 export default function App(){
+  const [mobileOpen, setMobileOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       <header className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-neutral-200">
@@ -28,15 +36,64 @@ export default function App(){
             <div className="h-7 w-7 rounded-lg bg-neutral-900 text-white grid place-items-center">OY</div>
             <span>OpenYum</span>
           </div>
-          <nav className="ml-auto flex items-center gap-1">
-            <NavItem to="/browse">Browse</NavItem>
-            <NavItem to="/submit">Submit Recipe</NavItem>
-            <NavItem to="/support">Support</NavItem>
-            <NavItem to="/contact">Contact</NavItem>
-            <NavItem to="/terms">Terms</NavItem>
-            <NavItem to="/privacy">Privacy</NavItem>
-          </nav>
+          <div className="ml-auto flex items-center gap-1">
+            <nav className="hidden sm:flex items-center gap-1">
+              <NavItem to="/browse">Browse</NavItem>
+              <NavItem to="/submit">Submit Recipe</NavItem>
+              <NavItem to="/support">Support</NavItem>
+              <NavItem to="/contact">Contact</NavItem>
+              <NavItem to="/terms">Terms</NavItem>
+              <NavItem to="/privacy">Privacy</NavItem>
+            </nav>
+            <div className="hidden sm:flex items-center gap-1 ml-2">
+              <NavItem to="/login">Login</NavItem>
+              <NavItem to="/signup">Sign Up</NavItem>
+            </div>
+            <button
+              className="sm:hidden p-2"
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
+        {mobileOpen && (
+          <nav className="sm:hidden px-4 pb-4 flex flex-col gap-1 border-t border-neutral-200">
+            <NavItem to="/browse" onClick={() => setMobileOpen(false)}>
+              Browse
+            </NavItem>
+            <NavItem to="/submit" onClick={() => setMobileOpen(false)}>
+              Submit Recipe
+            </NavItem>
+            <NavItem to="/support" onClick={() => setMobileOpen(false)}>
+              Support
+            </NavItem>
+            <NavItem to="/contact" onClick={() => setMobileOpen(false)}>
+              Contact
+            </NavItem>
+            <NavItem to="/terms" onClick={() => setMobileOpen(false)}>
+              Terms
+            </NavItem>
+            <NavItem to="/privacy" onClick={() => setMobileOpen(false)}>
+              Privacy
+            </NavItem>
+            <NavItem to="/login" onClick={() => setMobileOpen(false)}>
+              Login
+            </NavItem>
+            <NavItem to="/signup" onClick={() => setMobileOpen(false)}>
+              Sign Up
+            </NavItem>
+          </nav>
+        )}
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-6">
