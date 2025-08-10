@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import AuthBox from '../components/AuthBox.jsx'
 
 export default function Home(){
   return (
@@ -30,10 +29,7 @@ export default function Home(){
         </div>
       </section>
 
-      <section className="grid gap-3">
-        <h2 className="font-semibold">Login</h2>
-        <AuthBox />
-      </section>
+      {/* Login moved to dedicated page */}
     </div>
   )
 }
