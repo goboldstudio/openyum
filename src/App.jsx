@@ -9,6 +9,8 @@ import Terms from './pages/Terms.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Support from './pages/Support.jsx'
 import Recipe from './pages/Recipe.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/Signup.jsx'
 
 function NavItem({ to, children }){
   return (
@@ -35,6 +37,8 @@ export default function App(){
             <NavItem to="/contact">Contact</NavItem>
             <NavItem to="/terms">Terms</NavItem>
             <NavItem to="/privacy">Privacy</NavItem>
+            <NavItem to="/login">Login</NavItem>
+            <NavItem to="/signup">Sign Up</NavItem>
           </nav>
         </div>
       </header>
@@ -50,6 +54,8 @@ export default function App(){
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </main>
 
