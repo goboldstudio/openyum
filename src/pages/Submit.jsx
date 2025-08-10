@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { supabase } from '../supabaseClient'
+import LoginRequired from '../components/LoginRequired.jsx'
 
 export default function Submit(){
   const [title, setTitle] = useState('')
@@ -12,6 +13,15 @@ export default function Submit(){
   const [cookTime, setCookTime] = useState(30)
   const [difficulty, setDifficulty] = useState('Easy')
   const [msg, setMsg] = useState('')
+  const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user)
+      setLoading(false)
+    })
+  }, [])
 
   async function handleSubmit(e){
     e.preventDefault()
@@ -43,6 +53,8 @@ export default function Submit(){
       setTitle(''); setDescription(''); setIngredients(''); setSteps(''); setCuisine('')
     }
   }
+
+  if (!loading && !user) return <LoginRequired />
 
   return (
     <div className="grid gap-4">
