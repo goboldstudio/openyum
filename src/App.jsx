@@ -24,17 +24,10 @@ export default function App(){
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       <header className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-neutral-200">
         <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-3">
-          <div className="flex items-center gap-2 font-semibold">
-            <div className="h-7 w-7 rounded-lg bg-neutral-900 text-white grid place-items-center">OY</div>
-            <span>OpenYum</span>
-          </div>
           <nav className="ml-auto flex items-center gap-1">
             <NavItem to="/browse">Browse</NavItem>
             <NavItem to="/submit">Submit Recipe</NavItem>
             <NavItem to="/support">Support</NavItem>
-            <NavItem to="/contact">Contact</NavItem>
-            <NavItem to="/terms">Terms</NavItem>
-            <NavItem to="/privacy">Privacy</NavItem>
           </nav>
         </div>
       </header>
