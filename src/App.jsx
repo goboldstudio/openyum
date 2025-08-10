@@ -9,6 +9,8 @@ import Terms from './pages/Terms.jsx'
 import Privacy from './pages/Privacy.jsx'
 import Support from './pages/Support.jsx'
 import Recipe from './pages/Recipe.jsx'
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
 
 function NavItem({ to, children }){
   return (
@@ -50,6 +52,8 @@ export default function App(){
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/support" element={<Support />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
 
